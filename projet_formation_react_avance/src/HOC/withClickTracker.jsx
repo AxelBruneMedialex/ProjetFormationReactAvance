@@ -1,19 +1,17 @@
 import React from "react";
+import {MonContexte} from "../Contexts/MonContexte";
 function withClickTracker(WrappedComponent){
     return class extends React.Component {
-        state={
-            theme: 'light'
-        }
-        handleClick = () => {
-            this.setState({theme: this.state.theme === 'light' ? 'dark' : 'light'});
-        }
-
         render() {
-            return <WrappedComponent
-                {...this.props}
-                onClick={this.handleClick}
-                theme={this.state.theme}
-            />
+            return <MonContexte.Consumer>
+                {
+                    contexte => <WrappedComponent
+                        {...this.props}
+                        onClick={contexte.switchTheme}
+                        theme={contexte.theme}
+                    />
+                }
+            </MonContexte.Consumer>
         }
     }
 }

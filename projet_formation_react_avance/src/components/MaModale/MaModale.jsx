@@ -1,17 +1,18 @@
 import ReactDOM from "react-dom";
-import {useState} from "react";
+import {useContext} from "react";
 import './MaModale.css';
+import {MonContexte, useMonContexte} from "../../Contexts/MonContexte";
 
 function MaModale({title, children}){
     const modalRoot = document.getElementById('modal-root');
-    const [isVisible, setIsVisible] = useState(false);
+    const contexte = useMonContexte();
 
-    return isVisible ? ReactDOM.createPortal(
+    return contexte.isModaleOpen && ReactDOM.createPortal(
         <div className="MaModale__container">
             <div className="MaModale__contentContainer">
                 <div className="MaModale__title">
                     {title}
-                    <button className="MaModale__closeButton" onClick={() => setIsVisible(false)}>
+                    <button className="MaModale__closeButton" onClick={contexte.openCloseModale}>
                         <svg
                             width="25px"
                             height="25px"
@@ -32,7 +33,7 @@ function MaModale({title, children}){
             </div>
         </div>,
         modalRoot
-    ) : <button onClick={() => setIsVisible(true)}>Ouvrir la modale</button>;
+    );
 }
 
 export default MaModale;

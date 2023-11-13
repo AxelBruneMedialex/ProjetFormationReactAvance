@@ -1,7 +1,7 @@
 import './MonComposant.css';
-function MonComposant({onClick}){
-    return <div onClick={onClick} className="MonComposant">
-        Ceci est mon composant
+function MonComposant({onClick, theme}){
+    return <div onClick={onClick} className={`MonComposant MonComposant_${theme}`}>
+        Passer en {theme === "light" ? 'dark' : 'light'} Mode
     </div>
 }
 

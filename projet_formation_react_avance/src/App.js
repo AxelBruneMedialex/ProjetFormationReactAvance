@@ -5,6 +5,9 @@ import MaModale from "./components/MaModale/MaModale";
 import {MonContexte} from "./Contexts/MonContexte";
 import {useState} from "react";
 import MonBoutonModale from "./components/MonBoutonModale/MonBoutonModale";
+import {Provider} from "react-redux";
+import storeRedux from "./stores/Redux/reduxStore";
+import MesUtilisateurs from "./components/MesUtilisateurs/MesUtilisateurs";
 
 function App() {
   const MonComposantAvecTracker = withClickTracker(MonComposant);
@@ -20,13 +23,16 @@ function App() {
 
   return (
     <div className="App">
-        <MonContexte.Provider value={contexteData}>
-            <MonComposantAvecTracker />
-            <MonBoutonModale />
-            <MaModale title="Test modale react portal">
-                Ceci est une modale fonctionnant avec react portal
-            </MaModale>
-        </MonContexte.Provider>
+        <Provider store={storeRedux}>
+            <MonContexte.Provider value={contexteData}>
+                <MonComposantAvecTracker />
+                <MonBoutonModale />
+                <MaModale title="Test modale react portal">
+                    Ceci est une modale fonctionnant avec react portal
+                </MaModale>
+            </MonContexte.Provider>
+            <MesUtilisateurs />
+        </Provider>
     </div>
   );
 }

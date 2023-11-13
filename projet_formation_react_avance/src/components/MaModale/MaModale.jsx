@@ -1,7 +1,6 @@
 import ReactDOM from "react-dom";
-import {useContext} from "react";
 import './MaModale.css';
-import {MonContexte, useMonContexte} from "../../Contexts/MonContexte";
+import {useMonContexte} from "../../Contexts/MonContexte";
 
 function MaModale({title, children}){
     const modalRoot = document.getElementById('modal-root');

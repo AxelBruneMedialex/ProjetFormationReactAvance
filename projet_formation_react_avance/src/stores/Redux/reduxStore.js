@@ -3,7 +3,6 @@ import {combineReducers, createStore} from "redux";
 const initialState = {
     utilisateurs: [
         'Tom',
-        'Jean'
     ]
 }
 

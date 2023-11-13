@@ -1,16 +1,21 @@
-import {connect, useSelector} from "react-redux";
+import {connect, useDispatch, useSelector} from "react-redux";
 import {useState} from "react";
+import {addUtilisateur, removeUtilisateur} from "../../stores/ReduxToolkit/reduxToolkitStore";
 
-function MesUtilisateurs({utilisateurs, dispatch}){
+function MesUtilisateurs({utilisateurs}){
     const [nom, setNom] = useState('');
+    const utilisateursStore = useSelector(
+        (state) => state.utilisateurs
+    );
+    const dispatch = useDispatch();
 
     return <div>
         <div>
-            Liste des utilisateurs Redux:
+            Liste des utilisateurs Toolkit:
             <div>
                 <input value={nom} onChange={(e) => setNom(e.target.value)} />
                 <button onClick={() => {
-                    dispatch({type: 'ADD_USER', payload: nom});
+                    dispatch(addUtilisateur(nom));
                     setNom('');
                 }}>
                     +
@@ -18,9 +23,9 @@ function MesUtilisateurs({utilisateurs, dispatch}){
             </div>
             <ul>
                 {
-                    utilisateurs.map((utilisateur) => <li>
+                    utilisateursStore.utilisateurs.map((utilisateur) => <li>
                         {utilisateur + ' '}
-                        <button onClick={() => dispatch({type: 'REMOVE_USER', payload: utilisateur})}>-</button>
+                        <button onClick={() => dispatch(removeUtilisateur(utilisateur))}>-</button>
                     </li>)
                 }
             </ul>

@@ -7,10 +7,11 @@ import {useState} from "react";
 import MonBoutonModale from "./components/MonBoutonModale/MonBoutonModale";
 import {Provider} from "react-redux";
 import storeRedux from "./stores/Redux/reduxStore";
-import {reduxToolkitStore} from "./stores/ReduxToolkit/reduxToolkitStore";
+import {persistor, reduxToolkitStore} from "./stores/ReduxToolkit/reduxToolkitStore";
 import MesUtilisateurs from "./components/MesUtilisateurs/MesUtilisateurs";
 import MesUtilisateursToolkit from "./components/MesUtilisateurs/MesUtilisateursToolkit";
 import MonBoutonPersonneAleatoire from "./components/MonBoutonPersonneAleatoire/MonBoutonPersonneAleatoire";
+import {PersistGate} from "redux-persist/integration/react";
 
 function App() {
   const MonComposantAvecTracker = withClickTracker(MonComposant);
@@ -37,8 +38,10 @@ function App() {
             <MesUtilisateurs />
         </Provider>
         <Provider store={reduxToolkitStore}>
-            <MesUtilisateursToolkit />
-            <MonBoutonPersonneAleatoire />
+            <PersistGate loading={null} persistor={persistor}>
+                <MesUtilisateursToolkit />
+                <MonBoutonPersonneAleatoire />
+            </PersistGate>
         </Provider>
     </div>
   );

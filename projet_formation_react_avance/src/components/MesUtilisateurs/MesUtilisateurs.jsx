@@ -18,7 +18,7 @@ function MesUtilisateurs({utilisateurs, dispatch}){
             </div>
             <ul>
                 {
-                    utilisateurs.map((utilisateur) => <li>
+                    utilisateurs.map((utilisateur, index) => <li key={`utilisateurRedux-${index}`}>
                         {utilisateur + ' '}
                         <button onClick={() => dispatch({type: 'REMOVE_USER', payload: utilisateur})}>-</button>
                     </li>)

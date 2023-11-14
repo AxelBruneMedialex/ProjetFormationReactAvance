@@ -23,7 +23,7 @@ function MesUtilisateurs({utilisateurs}){
             </div>
             <ul>
                 {
-                    utilisateursStore.utilisateurs.map((utilisateur) => <li>
+                    utilisateursStore.utilisateurs.map((utilisateur, index) => <li key={`utilisateurReduxToolkit-${index}`}>
                         {utilisateur + ' '}
                         <button onClick={() => dispatch(removeUtilisateur(utilisateur))}>-</button>
                     </li>)

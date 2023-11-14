@@ -15,6 +15,7 @@ import {PersistGate} from "redux-persist/integration/react";
 import MonBoutonRxJs from "./components/MonBoutonRxJs/MonBoutonRxJs";
 import {fromEvent} from "rxjs";
 import MonBoutonCompteur from "./components/MonBoutonCompteur/MonBoutonCompteur";
+import MonComposantRef from "./components/MonComposantRef/MonComposantRef";
 
 function App() {
     const MonComposantAvecTracker = withClickTracker(MonComposant);
@@ -50,6 +51,7 @@ function App() {
                 <MonBoutonRxJs />
             </div>
             <MonBoutonCompteur />
+            <MonComposantRef />
         </div>
     );
 }

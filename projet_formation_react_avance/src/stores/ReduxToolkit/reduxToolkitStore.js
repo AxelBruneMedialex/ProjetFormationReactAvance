@@ -1,10 +1,21 @@
-import {configureStore, createSlice} from "@reduxjs/toolkit";
+import {configureStore, createAsyncThunk, createSlice} from "@reduxjs/toolkit";
+import async from "async";
 
 const initialState = {
     utilisateurs: [
         'Jean'
-    ]
+    ],
+    randomPerson: null
 };
+
+export const fetchRandomPerson = createAsyncThunk(
+    'maSliceToolkit/fetchRandomPerson',
+    async () => {
+        const response =  await fetch('https://randomuser.me/api');
+        const data = await response.json();
+        return data;
+    }
+)
 
 export const maSliceToolkit = createSlice({
     name: 'maSliceToolkit',
@@ -15,6 +26,12 @@ export const maSliceToolkit = createSlice({
         },
         removeUtilisateur: (state, action) => {
             state.utilisateurs = state.utilisateurs.filter((utilisateur) => utilisateur !== action.payload);
+        }
+    },
+    extraReducers: {
+        [fetchRandomPerson.fulfilled]: (state, action) => {
+            const identity = action.payload.results[0].name;
+            state.randomPerson = `${identity.first} ${identity.last}`;
         }
     }
 });

@@ -10,6 +10,7 @@ import storeRedux from "./stores/Redux/reduxStore";
 import {reduxToolkitStore} from "./stores/ReduxToolkit/reduxToolkitStore";
 import MesUtilisateurs from "./components/MesUtilisateurs/MesUtilisateurs";
 import MesUtilisateursToolkit from "./components/MesUtilisateurs/MesUtilisateursToolkit";
+import MonBoutonPersonneAleatoire from "./components/MonBoutonPersonneAleatoire/MonBoutonPersonneAleatoire";
 
 function App() {
   const MonComposantAvecTracker = withClickTracker(MonComposant);
@@ -37,6 +38,7 @@ function App() {
         </Provider>
         <Provider store={reduxToolkitStore}>
             <MesUtilisateursToolkit />
+            <MonBoutonPersonneAleatoire />
         </Provider>
     </div>
   );

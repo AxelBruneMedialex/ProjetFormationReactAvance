@@ -1,6 +1,7 @@
 import {configureStore, createAsyncThunk, createSlice} from "@reduxjs/toolkit";
 import storage from 'redux-persist/lib/storage';
 import {persistReducer, persistStore} from "redux-persist";
+import {MonMiddleware} from "../../middlewares/MonMiddleware";
 
 const initialState = {
     utilisateurs: [
@@ -51,9 +52,7 @@ export const reduxToolkitStore = configureStore({
     reducer: {
         utilisateurs: persistReducer(persistConfig, maSliceToolkit.reducer)
     },
-    middleware: (getDefaultMiddleware) => getDefaultMiddleware({
-        serializableCheck: false
-    })
+    middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(MonMiddleware)
 });
 
 export const persistor = persistStore(reduxToolkitStore);

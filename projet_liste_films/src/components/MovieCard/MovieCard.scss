@@ -1,0 +1,6 @@
+.MovieCard__container {
+  @apply max-w-sm bg-white border border-gray-200 rounded-lg shadow;
+  .MovieCard__imageContainer {
+    @apply bg-[#e0e0e0] flex justify-center rounded-lg;
+  }
+}

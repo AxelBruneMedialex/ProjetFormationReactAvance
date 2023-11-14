@@ -1,0 +1,9 @@
+.Navbar__container {
+  @apply flex justify-between items-center px-5 h-[64px] border-[#e0e0e0] border-b;
+  .Navbar__connectButton {
+    @apply bg-[#ffc107] p-2 rounded-md;
+  }
+  .Navbar__searchInput{
+    @apply bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-full block w-[350px] h-11 p-2.5;
+  }
+}

@@ -16,6 +16,7 @@ import MonBoutonRxJs from "./components/MonBoutonRxJs/MonBoutonRxJs";
 import {fromEvent} from "rxjs";
 import MonBoutonCompteur from "./components/MonBoutonCompteur/MonBoutonCompteur";
 import MonComposantRef from "./components/MonComposantRef/MonComposantRef";
+import MonComposantMemo from "./components/MonComposantMemo/MonComposantMemo";
 
 function App() {
     const MonComposantAvecTracker = withClickTracker(MonComposant);
@@ -52,6 +53,7 @@ function App() {
             </div>
             <MonBoutonCompteur />
             <MonComposantRef />
+            <MonComposantMemo />
         </div>
     );
 }

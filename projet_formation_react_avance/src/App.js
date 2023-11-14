@@ -12,9 +12,11 @@ import MesUtilisateurs from "./components/MesUtilisateurs/MesUtilisateurs";
 import MesUtilisateursToolkit from "./components/MesUtilisateurs/MesUtilisateursToolkit";
 import MonBoutonPersonneAleatoire from "./components/MonBoutonPersonneAleatoire/MonBoutonPersonneAleatoire";
 import {PersistGate} from "redux-persist/integration/react";
+import MonBoutonRxJs from "./components/MonBoutonRxJs/MonBoutonRxJs";
+import {fromEvent} from "rxjs";
 
 function App() {
-  const MonComposantAvecTracker = withClickTracker(MonComposant);
+    const MonComposantAvecTracker = withClickTracker(MonComposant);
     const [isModaleOpen, setIsModaleOpen] = useState(false);
     const [theme, setTheme] = useState('light');
 
@@ -25,26 +27,29 @@ function App() {
         switchTheme: () => setTheme(theme === 'light' ? 'dark' : 'light')
     }
 
-  return (
-    <div className="App">
-        <MonContexte.Provider value={contexteData}>
-            <MonComposantAvecTracker />
-            <MonBoutonModale />
-            <MaModale title="Test modale react portal">
-                Ceci est une modale fonctionnant avec react portal
-            </MaModale>
-        </MonContexte.Provider>
-        <Provider store={storeRedux}>
-            <MesUtilisateurs />
-        </Provider>
-        <Provider store={reduxToolkitStore}>
-            <PersistGate loading={null} persistor={persistor}>
-                <MesUtilisateursToolkit />
-                <MonBoutonPersonneAleatoire />
-            </PersistGate>
-        </Provider>
-    </div>
-  );
+    return (
+        <div className="App">
+            <MonContexte.Provider value={contexteData}>
+                <MonComposantAvecTracker/>
+                <MonBoutonModale/>
+                <MaModale title="Test modale react portal">
+                    Ceci est une modale fonctionnant avec react portal
+                </MaModale>
+            </MonContexte.Provider>
+            <Provider store={storeRedux}>
+                <MesUtilisateurs/>
+            </Provider>
+            <Provider store={reduxToolkitStore}>
+                <PersistGate loading={null} persistor={persistor}>
+                    <MesUtilisateursToolkit/>
+                    <MonBoutonPersonneAleatoire/>
+                </PersistGate>
+            </Provider><br/>
+            <div style={{marginTop: '10px'}}>
+                <MonBoutonRxJs />
+            </div>
+        </div>
+    );
 }
 
 export default App;

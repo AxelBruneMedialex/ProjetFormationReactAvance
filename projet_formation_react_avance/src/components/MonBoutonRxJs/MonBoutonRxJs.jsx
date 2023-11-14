@@ -14,6 +14,7 @@ function MonBoutonRxJs(){
         };
 
         const subscription = clickObservable.subscribe(clickObsverver);
+        return () => subscription.unsubscribe();
     }, []);
 
 

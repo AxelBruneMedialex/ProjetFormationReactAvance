@@ -11,13 +11,15 @@ i18n.use(initReactI18next).init({
         en: {
             translation: {
                 "search": "Search",
-                "connect": 'Sign in'
+                "connect": 'Sign in',
+                'logout': "Log out"
             }
         },
         fr: {
             translation: {
                 "search": "Rechercher",
-                "connect": "Se connecter"
+                "connect": "Se connecter",
+                'logout': "Se déconnecter"
             }
         }
     }

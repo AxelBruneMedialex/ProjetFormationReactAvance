@@ -4,6 +4,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {setRecherche} from "../../stores/movieList.store";
 import {useTranslation} from "react-i18next";
 import BoutonChangementLangue from "../BoutonChangementLangue/BoutonChangementLangue";
+import {useAuth0} from "@auth0/auth0-react";
 
 function Navbar(){
     const listeFilmsStore = useSelector(
@@ -11,6 +12,9 @@ function Navbar(){
     );
     const dispatch = useDispatch();
     const {t} = useTranslation();
+    const {loginWithRedirect, logout, isAuthenticated} = useAuth0();
+
+    console.log(isAuthenticated);
 
     return <div className="Navbar__container">
         <Logo />
@@ -34,9 +38,13 @@ function Navbar(){
             <div>
                 <BoutonChangementLangue />
             </div>
-            <button className="Navbar__connectButton">
-                {t('connect')}
-            </button>
+            {
+                !isAuthenticated ? <button className="Navbar__connectButton" onClick={() => loginWithRedirect()}>
+                    {t('connect')}
+                </button> : <button className="Navbar__connectButton" onClick={() => logout()}>
+                    {t('logout')}
+                </button>
+            }
         </div>
     </div>
 }

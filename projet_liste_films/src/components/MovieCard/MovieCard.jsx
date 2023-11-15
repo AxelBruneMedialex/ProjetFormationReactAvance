@@ -2,11 +2,17 @@ import './MovieCard.scss';
 import {useSelector} from "react-redux";
 import {Rating} from "@mui/material";
 import ActeurChip from "../ActeurChip/ActeurChip";
+import Highlighter from "react-highlight-words";
+
 
 function MovieCard({film}){
     const langStore = useSelector(
         (state) => state.lang
     );
+    const listeFilmsStore = useSelector(
+        (state) => state.listeFilms
+    );
+
     return <div className="MovieCard__container">
         <div className="MovieCard__imageContainer">
             <img
@@ -16,8 +22,12 @@ function MovieCard({film}){
             />
         </div>
         <div className="px-3">
-            <div className="text-xl max-h-7 overflow-hidden overflow-ellipsis whitespace-nowrap">
-                {langStore.lang === 'en' && film.original_language === 'en' ? film.original_title : film.title}
+            <div className="text-xl max-h-7 overflow-hidden overflow-ellipsis whitespace-nowrap" id="titre">
+                <Highlighter
+                    textToHighlight={langStore.lang === 'en' && film.original_language === 'en' ? film.original_title : film.title}
+                    searchWords={[listeFilmsStore.recherche]}
+                    autoEscape={true}
+                />
             </div>
             <div className="text-gray-500">{`${film.release_date} | 2h45`}</div>
             <div className="flex justify-between">

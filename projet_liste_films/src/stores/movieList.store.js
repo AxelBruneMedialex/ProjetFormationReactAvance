@@ -2,7 +2,8 @@ import {configureStore, createAsyncThunk, createSlice} from "@reduxjs/toolkit";
 
 const initialState = {
     films: [],
-    recherche: ''
+    recherche: '',
+    loading: false
 };
 
 export const fetchMovies= createAsyncThunk(
@@ -18,7 +19,6 @@ export const fetchMovies= createAsyncThunk(
             }
         );
         const data = await response.json();
-        console.log(data.results.filter((film) => film.title.toLowerCase().includes(nom.toLowerCase())));
         return nom ? data.results.filter((film) => film.title.toLowerCase().includes(nom.toLowerCase())) : data.results;
     }
 )
@@ -35,8 +35,12 @@ export const listeFilmsSlice = createSlice({
         }
     },
     extraReducers: {
+        [fetchMovies.pending]: (state) => {
+            state.loading = true;
+        },
         [fetchMovies.fulfilled]: (state, action) => {
             state.films = action.payload;
+            state.loading = false;
         }
     }
 });

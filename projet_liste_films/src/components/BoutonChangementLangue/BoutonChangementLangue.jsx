@@ -13,8 +13,6 @@ function BoutonChangementLangue(){
         i18n.changeLanguage(langue).then(() =>  dispatch(setLang(langue)));
     };
 
-    console.log(langStore);
-
     return <div className="flex items-center">
         {
             langStore.lang === 'fr'

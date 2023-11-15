@@ -1,5 +1,5 @@
 .Navbar__container {
-  @apply flex justify-between items-center px-5 h-[64px] border-[#e0e0e0] border-b;
+  @apply flex justify-between items-center px-5 h-[64px] border-[#e0e0e0] border-b sticky top-0 bg-white z-30;
   .Navbar__connectButton {
     @apply bg-[#ffc107] p-2 rounded-md;
   }

@@ -14,8 +14,8 @@ function Liste(){
     }, [listeFilmsStore.recherche]);
 
     return <div className="flex flex-wrap justify-center mt-5">
-        {listeFilmsStore.films.map((film) => {
-            return <div className="mt-3 w-1/5 mx-2">
+        {listeFilmsStore.films.map((film, index) => {
+            return <div className="mt-3 w-1/5 mx-2" key={`film-${index}`}>
                 <MovieCard film={film} />
             </div>
         })}

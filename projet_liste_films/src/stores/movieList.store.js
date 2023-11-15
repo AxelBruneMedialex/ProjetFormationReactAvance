@@ -42,12 +42,3 @@ export const listeFilmsSlice = createSlice({
 });
 
 export const {setFilms, setRecherche} = listeFilmsSlice.actions;
-
-export const listeFilmsStore = configureStore({
-    reducer: {
-        listeFilms: listeFilmsSlice.reducer
-    },
-    middleware: (getDefaultMiddleware) => getDefaultMiddleware({
-        serializableCheck: false
-    })
-});

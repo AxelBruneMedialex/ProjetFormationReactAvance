@@ -4,15 +4,17 @@ import {Provider} from "react-redux";
 import Liste from "./components/Liste/Liste";
 import {globalStore} from "./stores/global.store";
 import './i18n';
+import Footer from "./components/Footer/Footer";
 
 function App() {
     return (
-        <div className="">
+        <>
             <Provider store={globalStore}>
                 <Navbar/>
                 <Liste />
             </Provider>
-        </div>
+            <Footer />
+        </>
     );
 }
 
